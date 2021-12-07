@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"os/signal"
 	"syscall"
@@ -23,13 +22,13 @@ func main() {
 	}
 
 	logger := logrus.New()
+	log := logger.WithField("process", "update-spectrum-ip")
+
 	if config.Debug {
 		logger.SetLevel(logrus.DebugLevel)
 	}
 
-	log := logger.WithField("process", "update-spectrum-ip")
-
-	log.Debug(config)
+	config.DebugEntry(log).Debug("using config")
 
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
@@ -41,13 +40,10 @@ func main() {
 		cancel()
 	}()
 
-	fmt.Println(config.CloudflareAPIEmail, config.CloudflareAPIKey)
 	api, err := cloudflare.New(config.CloudflareAPIKey, config.CloudflareAPIEmail)
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	fmt.Println(config.CloudflareAPIEmail, config.CloudflareAPIKey, config.CloudflareZoneName)
 
 	zoneID, err := api.ZoneIDByName(config.CloudflareZoneName)
 	if err != nil {
@@ -70,7 +66,7 @@ func main() {
 		spectrumutil.WithLogger(log),
 	)
 
-	ips, errs := poller.Start(ctx, config.DDNSHostname)
+	ips, errs := poller.Start(ctx, config.DDNSDomain)
 	for {
 		select {
 		case ip, more := <-ips:

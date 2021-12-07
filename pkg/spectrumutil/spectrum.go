@@ -147,7 +147,7 @@ func (s *SpectrumClient) UpdateAppIP(ctx context.Context, app *cloudflare.Spectr
 	})
 
 	if len(app.OriginDirect) == 1 && app.OriginDirect[0] == protocol.OriginDirect(ip) {
-		log.Info("app ip is already up-to-date, nothing to change")
+		log.Info("spectrum app ip is already up-to-date, nothing to change")
 		return app, nil
 	}
 

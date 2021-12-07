@@ -1,0 +1,9 @@
+version: '3'
+services:
+  update-spectrum-ip:
+    image: connormckelvey/cloudflare-spectrum-ddns:latest
+    command: 
+      - -poll
+      - -debug
+    env_file: ../.env
+    restart: unless-stopped

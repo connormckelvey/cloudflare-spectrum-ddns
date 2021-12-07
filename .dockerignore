@@ -1,3 +1,10 @@
+docker/*
+!docker/docker-entrypoint.sh
+
+.dockerignore
 .env
 .gitignore
-Dockerfile
+LICENSE
+Makefile
+README.md
+

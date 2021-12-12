@@ -1,4 +1,4 @@
-# Cloudflare Spectrum DDNS [![build](https://github.com/connormckelvey/cloudflare-spectrum-ddns/actions/workflows/build.yml/badge.svg)](https://github.com/connormckelvey/cloudflare-spectrum-ddns/actions/workflows/build.yml)
+# Cloudflare Spectrum DDNS [![build](https://github.com/connormckelvey/cloudflare-spectrum-ddns/actions/workflows/main.yml/badge.svg)](https://github.com/connormckelvey/cloudflare-spectrum-ddns/actions/workflows/main.yml)
 
 ### NOTICE - PROJECT IS A WORK IN PROGRESS
 

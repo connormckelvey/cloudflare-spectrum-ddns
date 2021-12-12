@@ -9,7 +9,7 @@ import (
 
 type IPChecker struct {
 	serverAddr string
-	client     *dns.Client
+	client     DNSClient
 	log        *logrus.Entry
 }
 
@@ -24,6 +24,12 @@ func WithServerAddr(serverAddr string) Option {
 func WithLogger(logger *logrus.Entry) Option {
 	return func(c *IPChecker) {
 		c.log = logger
+	}
+}
+
+func WithDNSClient(dns DNSClient) Option {
+	return func(c *IPChecker) {
+		c.client = dns
 	}
 }
 
